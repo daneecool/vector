@@ -1,51 +1,40 @@
 #include <iostream>
 #include <vector>
+using namespace std;
 
-template<typename DB>
-void Print2DVector(std::vector<std::vector<DB>> const&);
+// Defining the rows and columns of
+// vector of vectors
+#define ROW 61
+#define COL 6
 
 int main()
 {
-   std::cout << "Creating 2D vector\nEnter row size: ";
-   int row_size;
-   std::cin >> row_size;
+	// Initializing the vector of vectors
+	vector<vector<int> > vec;
 
-   std::cout << "Enter column size: ";
-   int col_size;
-   std::cin >> col_size;
+	// Elements to insert in column
+	int num = 0;
 
-   std::cout << "\n";
-    
-   // create a 2D int vector with known Dimensions
-   std::vector<std::vector<int>> aVector(row_size, std::vector<int>(col_size));
+	// Inserting elements into vector
+	for (int i = 0; i < ROW; i++) {
+		// Vector to store column elements
+		vector<int> v1;
 
-   // initialize the vector with some values other than zero
-   for (int row_loop = 0; row_loop < row_size; row_loop++)
-   {      
-      for (int col_loop = 0; col_loop < col_size; col_loop++)
-      {
-         aVector[row_loop][col_loop] = (row_loop + col_loop);
-         row_loop.push_back(aVector);
-      }
-   }
+		for (int j = 0; j < COL; j++) {
+			v1.push_back(num);
+			num += 1;
+		}
 
-   // Display the filled 2D vector
-   Print2DVector(aVector);
-}
+		// Pushing back above 1D vector
+		// to create the 2D vector
+		vec.push_back(v1);
+	}
 
-template<typename DB>
-void Print2DVector(std::vector<std::vector<DB>> const& aVec)
-{
-   int row_size = aVec.size();
-   int col_size = aVec[0].size();
-
-   for (int row_loop = 0; row_loop < row_size; row_loop++)
-   {
-      for (int col_loop = 0; col_loop < col_size; col_loop++)
-      {
-         // Display the filled 2D vector
-         std::cout << aVec[row_loop][col_loop] << ' ';
-      }
-      std::cout << '\n';
-   }
+	// Displaying the 2D vector
+	for (int i = 0; i < vec.size(); i++) {
+		for (int j = 0; j < vec[i].size(); j++)
+			cout << vec[i][j] << " ";
+		cout << endl;
+	}
+	return 0;
 }
